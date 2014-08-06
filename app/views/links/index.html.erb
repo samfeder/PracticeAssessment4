@@ -1,0 +1,17 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <%= error %><br>
+  <% end %>
+<% end %>
+
+<% @links.each do |link| %>
+<li><%= link_to link.title, link_url(link) %> : <%= link.url %></li>
+  <%= "#{link.title}: " %>
+  <%= link_to "Edit #{link.title}", edit_link_url(link)  %>
+  <%= link_to "Delete #{link.title}", link_url(link), method: :delete %>
+<br><br>
+<% end %>
+
+<%= link_to "New Link", new_link_url%>
+
+

@@ -1,0 +1,25 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <%= error %><br>
+  <% end %>
+<% end %>
+<h1>Sign Up</h1>
+<form action="<%= users_url %>" method="post">
+<label>
+  Username:
+  <input type="text"
+         name="user[username]"
+         value="">
+</label>
+<br>
+<label>
+  Password:
+  <input type="password"
+         name="user[password]"
+         value="">
+</label>
+<br>
+<button>Sign Up</button>
+</form>
+<br>
+Already a user? <a href="<%= new_session_url %>">sign in</a>

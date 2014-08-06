@@ -1,0 +1,36 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <%= error %><br>
+  <% end %>
+<% end %>
+
+
+<%= link_to @link.url, @link.url %>
+Title: <%= @link.title %> <br>
+
+URL: <%= @link.url %> <br>
+<h3>Comments</h3>
+
+<% @link.comments.each do |comment| %>
+  <%= comment.body %>
+<% if comment.user_id == current_user.id %>
+<%= button_to "Remove Comment", comment_url(comment), method: :delete %>
+<% end %>
+<br>
+<% end %>
+
+<h3>Add Comment</h3>
+<form action="<%= link_comments_url(@link) %>" method="post">
+  <label>Comment
+  <input type="text"
+         name="comment[body]"
+         value="">
+ </label>
+  <input type="submit" value="Add Comment">
+
+</form>
+
+<br>
+<%= link_to "Edit Link", edit_link_url(@link) %>
+<%= link_to "Create New Link", new_link_url, method: :get%>
+<%= link_to "All Links", links_url, method: :get%>
